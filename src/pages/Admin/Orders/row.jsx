@@ -63,13 +63,15 @@ export function Row({row, orders, setOrders}) {
         <TableCell>{formatDate(row.date)}</TableCell>
         <TableCell>
           <SelectStatus 
-          options={orderStatusOptions.filter(
-            (option) => option.value !== 'all'
-          )} 
-          placeholder="status"
-          defaultValue={orderStatusOptions.find(status => status.value === row.status || null)}
-          onChange={status =>newStatusOrder(row.orderId, status.value)}
-          isLoading={loading}
+            options={orderStatusOptions.filter(
+              (option) => option.id !== 0
+            )} 
+            placeholder="status"
+            defaultValue={orderStatusOptions.find(status => 
+              status.value === row.status || null)}
+            onChange={status =>newStatusOrder(row.orderId, status.value)}
+            isLoading={loading}
+            menuPortalTarget={document.body}
           />
           </TableCell>
       </TableRow>

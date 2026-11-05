@@ -52,7 +52,23 @@ export function Orders() {
             const newOrders= orders.filter((order) => order.status === status.value);
             setFilteredOrders(newOrders);
         }
+        
+        setActiveStatus(status.id);
     }
+
+    useEffect(() => {
+        if(0 === activeStatus) {
+            setFilteredOrders(orders);
+        } else {
+            const statusIndex = orderStatusOptions.findIndex(status => 
+                status.id === activeStatus);
+    
+            const newFilteredOrders= orders.filter((order) => 
+                order.status === orderStatusOptions[statusIndex]?.value);
+            
+            setFilteredOrders(newFilteredOrders);
+        }
+    }, [orders]);
 
     return (
         <>  
